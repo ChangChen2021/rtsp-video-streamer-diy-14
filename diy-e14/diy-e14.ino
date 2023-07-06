@@ -30,7 +30,7 @@
 
 //#define ENABLE_OLED //if want use oled ,turn on thi macro
 //#define SOFTAP_MODE // If you want to run our own softap turn this on
-#define ENABLE_WEBSERVER
+//#define ENABLE_WEBSERVER
 #define ENABLE_RTSPSERVER
 
 #ifdef ENABLE_OLED
@@ -48,7 +48,8 @@ bool hasDisplay; // we probe for the device at runtime
 //#define CAMERA_MODEL_M5STACK_PSRAM
 //#define CAMERA_MODEL_M5STACK_WIDE
 //#define CAMERA_MODEL_AI_THINKER
-#define CAMERA_MODEL_M5CAM
+//#define CAMERA_MODEL_M5CAM
+#define CAMERA_MODEL_XIAO_ESP32S3 // Has PSRAM
 
 #include "camera_pins.h"
 
@@ -171,7 +172,7 @@ void setup()
     config.xclk_freq_hz = 20000000;
     config.pixel_format = PIXFORMAT_JPEG;
     config.frame_size = FRAMESIZE_SVGA;
-    config.jpeg_quality = 12; 
+    config.jpeg_quality = 43; 
     config.fb_count = 2;       
   
     #if defined(CAMERA_MODEL_ESP_EYE)
@@ -253,7 +254,7 @@ void loop()
 #endif
 
 #ifdef ENABLE_RTSPSERVER
-    uint32_t msecPerFrame = 100;
+    uint32_t msecPerFrame = 200;
     static uint32_t lastimage = millis();
 
     // If we have an active client connection, just service that until gone
